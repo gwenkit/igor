@@ -1,44 +1,50 @@
-/* Hello, world! */
+/* igor/arduino */
 
-// https://docs.arduino.cc/learn/built-in-libraries/software-serial/
-#include <SoftwareSerial.h>
 
-// https://arduinojson.org/
-#include <ArduinoJson.h>
-#include <ArduinoJson.hpp>
+// global settings
+#include "global.h"
 
-#define DEBUG 0
-
-// global variables
-String buffer;
 
 // put your setup code here, to run once:
 void setup() {
   Serial.begin(9600);
+  BTSerial.begin(9600);
 
   delay(1000 * 4);
-  Serial.println("Hello, world!");
+  print_greetings();
+
+  test_init();
+
+  setup_pin();
+  setup_eth();
+  clear_buffer();
+  print_debug_log(F("complete: clear global buffer @ setup"), true);
 
   print_help();
-  clear_buffer();
 }
+
 
 // put your main code here, to run repeatedly:
 void loop() {
+  // serial(bluetooth)
+  watch_software_serial();
+  // switch
+  watch_pullup_switch();
+  watch_pulldown_switch();
+  watch_reed_switch();
+  // potentiometer
+  watch_vr();
+  // photoresistor
+  watch_light();
+  // sound
+  watch_sound();
+  // water
+  watch_water_height();
 }
 
-// print HELP messages
-void print_help() {
+
+// serial event loop:
+void serialEvent() {
+  watch_hardware_serial();
 }
 
-// print DEBUG messages
-void debug_buffer() {
-  if (DEBUG) {
-    Serial.println(String("[DEBUG] buffer[") + buffer + "]");
-  }
-}
-
-// clear buffer
-void clear_buffer() {
-  buffer = "";
-}
