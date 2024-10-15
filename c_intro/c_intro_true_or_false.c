@@ -8,6 +8,7 @@ int main(void)
     m = 100;
     printf("%d == %d ? %d\n", n, m, (n == m));
     printf("%d <= %d ? %d\n", n, m, (n <= m));
+    printf("!%d ? %d\n", m, (!m));
 
     return 0;
 }
