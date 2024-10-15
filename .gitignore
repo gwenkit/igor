@@ -3,6 +3,10 @@
 .localized
 
 
+#dist
+dist/
+
+
 # Prerequisites
 *.d
 
