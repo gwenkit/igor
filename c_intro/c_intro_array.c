@@ -27,6 +27,28 @@ int main(void) {
     }
     printf("\n");
 
+    int arr32[2][3] = {
+        {0,},
+        {0,}
+    };
+    printf("size of `int [2][3]`: %lu\n", sizeof(arr32)); // 4(int) * 3(x) * 2(y)
+    int x = 0, y = 0;
+    for (; y<2; y++) {
+        for (x=0; x<3; x++) {
+            printf("[%d][%d]: %d\n", y, x, arr32[y][x]);
+        }
+    }
+    printf("\n");
+
+    int arr33[3][3] = {30, 31, 32, 33};
+    printf("size of `int [3][3]`: %lu\n", sizeof(arr33)); // 4(int) * 3(x) * 3(y)
+    for (y=0; y<3; y++) {
+        for (x=0; x<3; x++) {
+            printf("[%d][%d]: %d\n", y, x, arr33[y][x]);
+        }
+    }
+    printf("\n");
+
     return 0;
 }
 
