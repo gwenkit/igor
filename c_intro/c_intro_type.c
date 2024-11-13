@@ -1,6 +1,13 @@
 #include <stdio.h>
 
 
+typedef struct {
+    int x;
+    int y;
+    char name[30];
+} Position;
+
+
 int main(void) {
     printf("sizeof(char):\t\t%lu bytes <-- $\n",   sizeof(char)        );
     printf("sizeof(short):\t\t%lu bytes \n",       sizeof(short)       );
@@ -12,6 +19,10 @@ int main(void) {
     printf("sizeof(long double):\t%lu bytes \n",   sizeof(long double) );
 
     printf("\n");
+
+    int d1, d2, d3;
+    printf("%d..%d..%d..; unexpected; trash\n", d1, d2, d3);
+    printf("%d..%d..%d..; inline assignment\n", d1=1, d2=2, d3=3);
 
     unsigned char uc = 0xFF;
     printf("unsigned char 0xFF is %d\n", uc);
@@ -53,10 +64,17 @@ int main(void) {
 
     // printf
 
-    double d = -123.123;
-    printf("use('f'): %f\n", d); // -123.123000
-    printf("use('e'): %e\n", d); // -1.231230e+02
-    printf("use('g'): %g\n", d); // -123.123
+    double d = -123.456;
+    printf("use('f'): %f\n",      d); // -123.456000
+    printf("use('e'): %e\n",      d); // -1.234560e+02
+    printf("use('g'): %g\n",      d); // -123.456
+    printf(" \"%%.2f\" : %.2f\n", d); // -123.46; 반올림
+
+    printf("8   / 3   = %d (d)\n", (8 / 3));   // 2
+    // printf("8 / 3 = %f (f)\n",  (8 / 3));   // 0.000000; [-Wformat]
+    printf("8.0 / 3   = %f (f)\n", (8.0 / 3)); // 2.666667
+    printf("8   / 3.0 = %f (f)\n", (8 / 3.0)); // 2.666667
+    printf("8   %% 3   = %d\n", 8%3);
 
     char str[] = "ARCANE";
     int sizeof_str = sizeof(str);
@@ -64,6 +82,47 @@ int main(void) {
     char last_char = str[last_position];
     printf("sizeof(%s): %d\n", str, sizeof_str);
     printf("check null char: '%c'(%d) at position %d\n", last_char, last_char, last_position);
+
+    printf("\n");
+
+    Position position = {
+        .name="position_test",
+        .x=7,
+        .y=8,
+    }; // 순서 자유로움
+    printf("&position: %p\n", &position);
+    printf("%10s %10s %13s\n", "position.x", "position.y", "position.name");
+    printf("----------+----------+-------------\n");
+    printf("%10d %10d %13s\n",  position.x,   position.y,   position.name );
+
+    printf("\n");
+
+    Position * ptr_position = &position;
+    printf("ptr_position: %p\n", ptr_position);
+    printf("%15s %15s %18s\n", "ptr_position->x", "ptr_position->y", "ptr_position->name");
+    printf("---------------+---------------+------------------\n");
+    printf("%15d %15d %18s\n",  ptr_position->x,   ptr_position->y,   ptr_position->name );
+
+    printf("\n");
+
+    Position position_backup = position;
+    printf("&position_backup: %p\n", &position_backup);
+    printf("COMPLETE: backup position\n");
+    position.x = 100;
+    position.y = 200;
+    int len_position_name = sizeof(position.name);
+    int i = 0;
+    for (; i<len_position_name; i++) {
+        if (position.name[i] != 0 && position.name[i] != '_') {
+            printf("[%d] '%c'", i, position.name[i]);
+            position.name[i] = position.name[i] + ('A'-'a');
+            printf("---> '%c' \n", position.name[i]);
+        }
+    }
+    printf("CHANGED: original position\n");
+    printf("%10s %10s %13s  %17s %17s %20s\n", "position.x", "position.y", "position.name", "position_backup.x", "position_backup.y", "position_backup.name");
+    printf("----------+----------+-------------||-----------------+-----------------+--------------------\n");
+    printf("%10d %10d %13s  %17d %17d %20s\n",  position.x,   position.y,   position.name,   position_backup.x,   position_backup.y,   position_backup.name );
 
     printf("\n");
 
