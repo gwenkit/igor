@@ -12,7 +12,7 @@ void debug_bit(const int);
 int main(void) {
 
     // XOR
- 
+
     int num1 =  15;          // 00000000 00000000 00000000 00001111
     int num2 =  20;          // 00000000 00000000 00000000 00010100
     printf("0x%x; %d;\t\t\t\t", num1, num1); debug_bit(num1);
@@ -21,6 +21,7 @@ int main(void) {
     printf("0x%x ^ 0x%x = 0x%x; %d;\t\t\t", num1, num2, xor12, xor12); debug_bit(xor12);
 
     printf("\n");
+
 
     // shift
 
@@ -31,8 +32,9 @@ int main(void) {
 
     printf("\n");
 
+
     // -, ~, !
- 
+
     int num4 = 10;
     printf("0x%x; %d;\t\t\t\t", num4, num4); debug_bit(num4);
     printf("-0x%x = 0x%x; %d;\t\t\t", num4, -num4, -num4); debug_bit(-num4);
@@ -41,16 +43,18 @@ int main(void) {
 
     printf("\n");
 
+
     // read
 
     int num51 = 10;                                          // 00000000 00000000 00000000 00001010
     printf("0x%x; %d;\t\t\t\t", num51, num51); debug_bit(num51);
     int filter_read = 1 << BIT_POSITION_READ;                // 00000000 00000000 00000000 00000010
     printf("filter: 0x%x; %d;\t\t\t\t", filter_read, filter_read); debug_bit(filter_read);
-    int read51 = (num51 & filter_read) >> BIT_POSITION_READ; //                                  1 
+    int read51 = (num51 & filter_read) >> BIT_POSITION_READ; //                                   1
     printf("read(bit_position=%d)? %d; use(&, >>)\n", BIT_POSITION_READ, read51);
 
     printf("\n");
+
 
     // set
 
@@ -63,6 +67,7 @@ int main(void) {
 
     printf("\n");
 
+
     // clear
 
     int num53 = 10;                                // 00000000 00000000 00000000 00001010
@@ -74,6 +79,7 @@ int main(void) {
 
     printf("\n");
 
+
     // toggle
 
     int num54 = 10;                               // 00000000 00000000 00000000 00001010
@@ -84,6 +90,7 @@ int main(void) {
     printf("toggle(bit_position=%d)? %d; use(^=)\t", BIT_POSITION_TOGGLE, num54); debug_bit(num54);
 
     printf("\n");
+
 
     return 0;
 }
@@ -109,4 +116,5 @@ void debug_bit(const int num) {
     }
     printf("]\n");
 }
+
 

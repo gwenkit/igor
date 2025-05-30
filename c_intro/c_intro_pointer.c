@@ -30,6 +30,7 @@ int main(void) {
 
     printf("\n");
 
+
     int num = 10;
     const int * pnum1 = &num;
     int * const pnum2 = &num;
@@ -44,10 +45,12 @@ int main(void) {
 
     printf("\n");
 
+
     int (*fptr) (int, int) = add;
     printf("%d + %d = %d; check: %d\n", 1, 2, fptr(1, 2), add(1, 2));
 
     printf("\n");
+
 
     int arr[3] = {1, 2, 3};
     int * parr = arr;
@@ -57,29 +60,31 @@ int main(void) {
 
     printf("\n");
 
+
     int d1 = 1, d2 = 2, d3 = 3;
     int   arr31[3] = {  d1,  d2,  d3 }; // 값을 복사해서 만든 배열
     int * arr32[3] = { &d1, &d2, &d3 }; // 변수의 주소를 참조해서 만든 배열
-    printf("//////     arr31: %p,     arr32: %p\n",  arr31,     arr32);
+    printf("//////  arr31   : %p,  arr32   : %p\n",  arr31,     arr32);
     printf("////// &arr31[0]: %p, &arr32[0]: %p\n", &arr31[0], &arr32[0]);
     int i = 0;
-    printf("////// 3-1. 값을 복사해서 만든 배열\n");
+    printf("\n////// 3-1. 값을 복사해서 만든 배열\n");
     for (i=0; i<3; i++) {
-        printf("//// DEBUG 3-1 arr31[%d]\n", i);
+        printf("// DEBUG 3-1-%d; arr31[%d]\n", i, i);
         printf("// &arr31[%d] == %p\t: 배열 원소의 주소\n",        i, &arr31[i]);
         printf("//  arr31[%d] == %d\t\t: 복사된 값 (!!)\n",        i,  arr31[i]);
         printf("// *arr31[%d] == 사용할 수 없음\t: 컴파일 안됨\n", i);
     }
-    printf("////// 3-2. 변수의 주소를 참조해서 만든 배열\n");
+    printf("\n////// 3-2. 변수의 주소를 참조해서 만든 배열\n");
     for (i=0; i<3; i++) {
-        printf("//// DEBUG 3-2 arr32[%d]\n", i);
+        printf("// DEBUG 3-2-%d; arr32[%d]\n", i, i);
         printf("// &arr32[%d] == %p\t: 배열 원소의 주소\n",   i, &arr32[i]);
         printf("//  arr32[%d] == %p\t: 참조된 변수의 주소\n", i,  arr32[i]);
         printf("// *arr32[%d] == %d\t\t: 참조된 변수의 값\n", i, *arr32[i]);
     }
-    printf("////// check: (&d1: %p), (&d2: %p), (&d3: %p)\n", &d1, &d2, &d3);
+    printf("\n////// check: (&d1: %p), (&d2: %p), (&d3: %p)\n", &d1, &d2, &d3);
 
     printf("\n");
+
 
     return 0;
 }
@@ -87,4 +92,5 @@ int main(void) {
 int add(int n1, int n2) {
     return n1 + n2;
 }
+
 

@@ -9,6 +9,7 @@ int main(void)
 
     printf("input: %d\n", num);
 
+
     return 0;
 }
 

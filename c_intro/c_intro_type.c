@@ -20,6 +20,7 @@ int main(void) {
 
     printf("\n");
 
+
     int d1, d2, d3;
     printf("%d..%d..%d..; unexpected; trash\n", d1, d2, d3);
     printf("%d..%d..%d..; inline assignment\n", d1=1, d2=2, d3=3);
@@ -33,6 +34,7 @@ int main(void) {
 
     printf("\n");
 
+
     // ASCII
 
     char A = 'A';
@@ -40,13 +42,14 @@ int main(void) {
     printf("%c is %d\n", A, A);
     printf("%c is %d\n", a, a);
 
-    char xx = 'A'-'a';
-    printf("('A'-'a') is %d\n", xx);
-    char Aa = A  - xx;
-    char aA = Aa + xx;
+    char xxx = 'A'-'a';
+    printf(  "('A'-'a') is %d\n", xxx  );
+    char Aa = A  - xxx;
+    char aA = Aa + xxx;
     printf("%c -> %c -> %c\n", A, Aa, aA);
 
     printf("\n");
+
 
     // casting
 
@@ -61,6 +64,7 @@ int main(void) {
     printf("(O) %f\n", good_3div4);
 
     printf("\n");
+
 
     // printf
 
@@ -85,6 +89,7 @@ int main(void) {
 
     printf("\n");
 
+
     Position position = {
         .name="position_test",
         .x=7,
@@ -97,6 +102,7 @@ int main(void) {
 
     printf("\n");
 
+
     Position * ptr_position = &position;
     printf("ptr_position: %p\n", ptr_position);
     printf("%15s %15s %18s\n", "ptr_position->x", "ptr_position->y", "ptr_position->name");
@@ -104,6 +110,7 @@ int main(void) {
     printf("%15d %15d %18s\n",  ptr_position->x,   ptr_position->y,   ptr_position->name );
 
     printf("\n");
+
 
     Position position_backup = position;
     printf("&position_backup: %p\n", &position_backup);
@@ -114,9 +121,9 @@ int main(void) {
     int i = 0;
     for (; i<len_position_name; i++) {
         if (position.name[i] != 0 && position.name[i] != '_') {
-            printf("[%d] '%c'", i, position.name[i]);
-            position.name[i] = position.name[i] + ('A'-'a');
-            printf("---> '%c' \n", position.name[i]);
+            printf("[%2d] '%c'", i, position.name[i]);
+            position.name[i] = position.name[i] + xxx;
+            printf(" ---> '%c' \n", position.name[i]);
         }
     }
     printf("CHANGED: original position\n");
@@ -126,6 +133,8 @@ int main(void) {
 
     printf("\n");
 
+
     return 0;
 }
+
 
